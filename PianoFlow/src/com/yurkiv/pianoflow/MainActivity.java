@@ -3,7 +3,6 @@ package com.yurkiv.pianoflow;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Random;
 
 import org.apache.http.HttpResponse;
@@ -11,9 +10,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.soundcloud.api.ApiWrapper;
-import com.soundcloud.api.Request;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -29,29 +25,24 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.soundcloud.api.ApiWrapper;
+import com.soundcloud.api.Request;
 
 public class MainActivity extends Activity implements OnCompletionListener{
 
-	//private ImageButton btnPlay;
-	//private ImageButton btnNext;
-	//private ImageButton btnPrevious;
-	//private ImageButton btnPlaylist;
-	//private ImageButton btnRepeat;
-	//private ImageButton btnShuffle;
+	
 	private ImageButton playPauseButton;
 	private ImageButton shareButton;
 	private Button aboutButton;
-	//private TextView songTitleLabel;
 	// Media Player
 	private  MediaPlayer mp;
 	private SongsManager songManager;
@@ -67,14 +58,7 @@ public class MainActivity extends Activity implements OnCompletionListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
 		
-		// All player buttons
-		//btnPlay = (ImageButton) findViewById(R.id.btnPlay);
-		//btnNext = (ImageButton) findViewById(R.id.btnNext);
-		//btnPrevious = (ImageButton) findViewById(R.id.btnPrevious);
-		//btnPlaylist = (ImageButton) findViewById(R.id.btnPlaylist);
-		//btnRepeat = (ImageButton) findViewById(R.id.btnRepeat);
-		//btnShuffle = (ImageButton) findViewById(R.id.btnShuffle);
-		//songTitleLabel = (TextView) findViewById(R.id.songTitle);
+		// All player buttons		
 		playPauseButton = (ImageButton) findViewById(R.id.playpauseButton);
 		shareButton = (ImageButton) findViewById(R.id.shareButton);
 		aboutButton=(Button) findViewById(R.id.aboutButton);
@@ -143,119 +127,8 @@ public class MainActivity extends Activity implements OnCompletionListener{
 				startActivity(intentAbout);	
 			}
 		});
-		
-		/**
-		 * Next button click event
-		 * Plays next song by taking currentSongIndex + 1
-		 * */
-//		btnNext.setOnClickListener(new View.OnClickListener() {			
-//			@Override
-//			public void onClick(View arg0) {
-//				// check if next song is there or not
-//				if(currentSongIndex < (songsList.size() - 1)){
-//					playSong(currentSongIndex + 1);
-//					currentSongIndex = currentSongIndex + 1;
-//				}else{
-//					// play first song
-//					playSong(0);
-//					currentSongIndex = 0;
-//				}				
-//			}
-//		});
-		
-		/**
-		 * Back button click event
-		 * Plays previous song by currentSongIndex - 1
-		 * */
-//		btnPrevious.setOnClickListener(new View.OnClickListener() {			
-//			@Override
-//			public void onClick(View arg0) {
-//				if(currentSongIndex > 0){
-//					playSong(currentSongIndex - 1);
-//					currentSongIndex = currentSongIndex - 1;
-//				}else{
-//					// play last song
-//					playSong(songsList.size() - 1);
-//					currentSongIndex = songsList.size() - 1;
-//				}				
-//			}
-//		});
-		
-		/**
-		 * Button Click event for Repeat button
-		 * Enables repeat flag to true
-		 * */
-//		btnRepeat.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View arg0) {
-//				if(isRepeat){
-//					isRepeat = false;
-//					Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
-//					btnRepeat.setImageResource(R.drawable.btn_repeat);
-//				}else{
-//					// make repeat to true
-//					isRepeat = true;
-//					Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
-//					// make shuffle to false
-//					isShuffle = false;
-//					btnRepeat.setImageResource(R.drawable.btn_repeat_focused);
-//					btnShuffle.setImageResource(R.drawable.btn_shuffle);
-//				}	
-//			}
-//		});
-		
-		/**
-		 * Button Click event for Shuffle button
-		 * Enables shuffle flag to true
-		 * */
-//		btnShuffle.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View arg0) {
-//				if(isShuffle){
-//					isShuffle = false;
-//					Toast.makeText(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
-//					btnShuffle.setImageResource(R.drawable.btn_shuffle);
-//				}else{
-//					// make repeat to true
-//					isShuffle= true;
-//					Toast.makeText(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
-//					// make shuffle to false
-//					isRepeat = false;
-//					btnShuffle.setImageResource(R.drawable.btn_shuffle_focused);
-//					btnRepeat.setImageResource(R.drawable.btn_repeat);
-//				}	
-//			}
-//		});
-		
-		/**
-		 * Button Click event for Play list click event
-		 * Launches list activity which displays list of songs
-		 * */
-//		btnPlaylist.setOnClickListener(new View.OnClickListener() {			
-//			@Override
-//			public void onClick(View arg0) {
-//				Intent i = new Intent(getApplicationContext(), PlayListActivity.class);
-//				startActivityForResult(i, 100);			
-//			}
-//		});		
 	}
-	
-	/**
-	 * Receiving song index from playlist view
-	 * and play the song
-	 * */
-	@Override
-    protected void onActivityResult(int requestCode,
-                                     int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 100){
-         	 currentSongIndex = data.getExtras().getInt("songIndex");
-         	 // play selected song
-             playSong(currentSongIndex);
-        } 
-    }
-	
+				
 	/**
 	 * Function to play a song
 	 * @param songIndex - index of song
@@ -370,6 +243,7 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	    manager.cancel(1);
 	 }
 	
+	
 	private void shareApp(){
 		String text="http://pianoflow.tk - PianoFlow - Music to Quiet Your World. " +
 				"Simply moving, simply beautiful...";		
@@ -386,16 +260,14 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	
 	private void loadPlaylist() {
 		if(isNetworkConnected()){			
-			if(isGoodSpead()){
+			if(isGoodSpeed()){
 				new Connection(this, new Notifier() {
 					@Override
 					public void operationFinished(Context context, int city, String cityname) {
-						
 					}
 				}).execute();
 			} else {
 				Toast.makeText(this, getResources().getString(R.string.slow_connection),Toast.LENGTH_LONG).show();
-				
 				//finish();
 			}			
 		} else {
@@ -415,14 +287,14 @@ public class MainActivity extends Activity implements OnCompletionListener{
 		}		
 		Intent notificationIntent = new Intent(this, MainActivity.class);
 	    NotificationCompat.Builder nb = new NotificationCompat.Builder(this)	    
-	        .setSmallIcon(icon) //иконка уведомления
-	        .setContentText("Music to quiet your world") // Основной текст уведомления
-	        .setContentTitle("Pianoflow") //заголовок уведомления
+	        .setSmallIcon(icon)
+	        .setContentText("Music to quiet your world")
+	        .setContentTitle("PianoFlow")
 	        .setContentIntent(PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT));
 	        
 	        Notification notification = nb.build();
 	        notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT;
-	        manager.notify(1, notification); // отображаем его пользователю.
+	        manager.notify(1, notification);
 	      
 	}
 	
@@ -436,18 +308,17 @@ public class MainActivity extends Activity implements OnCompletionListener{
 			return true;
 	}
 	
-	private boolean isGoodSpead() {
+	private boolean isGoodSpeed() {
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetInfo = cm.getActiveNetworkInfo();
-		
+		NetworkInfo activeNetInfo = cm.getActiveNetworkInfo();		
 		if(activeNetInfo.getType()==ConnectivityManager.TYPE_WIFI){
 			return true;
 		}		
 		int type = telephonyManager.getNetworkType();
 		switch (type) {
 		case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-			return false;
+			return true;
 		case TelephonyManager.NETWORK_TYPE_GPRS:
 			return false;
 		case TelephonyManager.NETWORK_TYPE_EDGE:
@@ -480,14 +351,13 @@ public class MainActivity extends Activity implements OnCompletionListener{
 			return true;
 		}
 	}
-
 	
 	private class Connection extends AsyncTask<String, Void, Exception> {
 		private ProgressDialog progressDialog;
 		private Context context;
 		private Notifier notifier;
-		private Exception exception;
-		
+		@SuppressWarnings("unused")
+		private Exception exception;		
 		public Connection(Context context, Notifier notifier) {
             if (context == null) throw new IllegalArgumentException("parentActivity");           
             this.context = context;  
@@ -522,13 +392,11 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	         } else {
 	        	 if (this.progressDialog.isShowing()) {
 	                 this.progressDialog.dismiss();
-	             } 
-	             
+	             } 	             
 	             if (notifier != null) {
 	                 notifier.operationFinished(context, 0, "");
 	             }
-	         }	
-			 
+	         }				 
 		}		
 	}
 }

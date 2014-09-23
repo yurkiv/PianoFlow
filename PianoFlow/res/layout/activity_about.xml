@@ -1,134 +1,132 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg2"
-    android:gravity="center" >
+    android:layout_height="match_parent" >
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg2" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/trans20"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="@dimen/dp16" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
-
-            <TextView
-                android:id="@+id/TextView02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="About Pianoflow:"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/AppColor" />
-
-        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp16"
-            android:layout_marginTop="@dimen/dp16"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical" >
+            android:background="@color/trans20"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/dp16" >
 
-            <ImageView
-                android:id="@+id/ImageView01"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher" />
+                android:gravity="center_vertical|center_horizontal" >
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp16"
-                android:layout_marginTop="@dimen/piano"
-                android:text="PianoFlow - Music to Quiet Your World"
-                android:textColor="@color/White" />
+                android:layout_marginTop="@dimen/dp16"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
 
+                <ImageView
+                    android:id="@+id/ImageView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/piano"
+                    android:text="PianoFlow - Music to Quiet Your World"
+                    android:textColor="@color/White" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Version 1.0.3"
+                    android:textColor="@color/AppColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal" >
+
+                <TextView
+                    android:id="@+id/siteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp16"
+                    android:layout_marginTop="@dimen/dp16"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:text="www.pianoflow.tk"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/SlateBlue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/TextView04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sources:"
+                    android:textColor="@color/White" />
+
+                <TextView
+                    android:id="@+id/sourcesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="www.github.com"
+                    android:textColor="@color/White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/mailtoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:text="jurkiw.misha@gmail.com"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/SlateBlue" />
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:lines="1"
+                    android:text="Copyright 2014"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/AppColor" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal" >
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Version 0.3 beta"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/AppColor" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/siteText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp16"
-                android:gravity="center_horizontal"
-                android:lines="1"
-                android:text="www.pianoflow.tk"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/SlateBlue" />
-
-            <TextView
-                android:id="@+id/mailtoText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:lines="1"
-                android:text="jurkiw.misha@gmail.com"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/SlateBlue" />
-
-            <TextView
-                android:id="@+id/TextView03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:lines="1"
-                android:text="Copyright 2014"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/AppColor" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sources:"
-                android:textColor="@color/White" />
-
-            <TextView
-                android:id="@+id/sourcesText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="www.github.com/dsfd"
-                android:textColor="@color/White" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

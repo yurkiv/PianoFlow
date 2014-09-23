@@ -42,7 +42,7 @@ public class SongsManager {
 			if (playlistResp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				JSONObject playlistJSON = new JSONObject(
 						EntityUtils.toString(playlistResp.getEntity()));				
-				//Log.d("SongsManager", playlistJSON.get("title") + ":");
+				Log.d("SongsManager", playlistJSON.get("title") + ":");
 				JSONArray array = playlistJSON.getJSONArray("tracks");
 				
 				for (int i = 0; i < array.length(); i++) {
@@ -54,9 +54,10 @@ public class SongsManager {
 					// Adding each song to SongList
 					songsList.add(song);					
 					
-					Log.d("SongsManager", trackId+" : "+trackTitle+" : "+trackId);
+					//Log.d("SongsManager", trackId+" : "+trackTitle+" : "+trackId);
 				}	
 			}
+			Log.d("SongsManager", "Playlist downloaded!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
