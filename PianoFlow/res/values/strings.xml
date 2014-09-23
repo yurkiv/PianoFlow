@@ -3,5 +3,9 @@
 
     <string name="hello">Hello World, AndroidBuildingMusicPlayerActivity!</string>
     <string name="app_name">AndroidBuildingMusicPlayer</string>
-
+    <string name="please_wait">Please wait&#8230;</string>
+    <string name="loading_forecast">Connect to server&#8230;</string>
+    <string name="download_error">The connection to the server failed. Please check your internet connection or try again later.</string>
+	<string name="slow_connection">We think your internet connection is slow.</string>
+    
 </resources>
