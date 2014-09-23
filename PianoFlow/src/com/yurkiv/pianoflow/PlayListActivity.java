@@ -3,7 +3,6 @@ package com.yurkiv.pianoflow;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.pianoflow.R;
 
 
 import android.app.ListActivity;

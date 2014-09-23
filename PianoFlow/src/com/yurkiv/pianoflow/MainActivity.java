@@ -12,7 +12,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.pianoflow.R;
 import com.soundcloud.api.ApiWrapper;
 import com.soundcloud.api.Request;
 
@@ -35,6 +34,7 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -49,6 +49,8 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	//private ImageButton btnRepeat;
 	//private ImageButton btnShuffle;
 	private ImageButton playPauseButton;
+	private ImageButton shareButton;
+	private Button aboutButton;
 	//private TextView songTitleLabel;
 	// Media Player
 	private  MediaPlayer mp;
@@ -74,6 +76,8 @@ public class MainActivity extends Activity implements OnCompletionListener{
 		//btnShuffle = (ImageButton) findViewById(R.id.btnShuffle);
 		//songTitleLabel = (TextView) findViewById(R.id.songTitle);
 		playPauseButton = (ImageButton) findViewById(R.id.playpauseButton);
+		shareButton = (ImageButton) findViewById(R.id.shareButton);
+		aboutButton=(Button) findViewById(R.id.aboutButton);
 		
 		// Mediaplayer
 		mp = new MediaPlayer();
@@ -120,6 +124,23 @@ public class MainActivity extends Activity implements OnCompletionListener{
 						playPauseButton.setImageResource(R.drawable.pause);
 					}
 				}				
+			}
+		});
+		
+		shareButton.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				shareApp();				
+			}
+		});
+		
+		aboutButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentAbout = new Intent(getApplicationContext(), AboutActivity.class);
+				startActivity(intentAbout);	
 			}
 		});
 		
@@ -349,7 +370,19 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	    manager.cancel(1);
 	 }
 	
-	
+	private void shareApp(){
+		String text="http://pianoflow.tk - PianoFlow - Music to Quiet Your World. " +
+				"Simply moving, simply beautiful...";		
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+		sendIntent.setType("text/plain");	
+		try {
+			startActivity(Intent.createChooser(sendIntent, "Share PianoFlow:"));
+		} catch (android.content.ActivityNotFoundException ex) {
+		    Toast.makeText(MainActivity.this, "There are no Share clients installed.", Toast.LENGTH_SHORT).show();
+		}
+	}
 	
 	private void loadPlaylist() {
 		if(isNetworkConnected()){			
