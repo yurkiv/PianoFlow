@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,15 @@ public class AboutActivity extends Activity {
 		siteText=(TextView) findViewById(R.id.siteText);
 		mailtoText=(TextView) findViewById(R.id.mailtoText);
 		sourcesText=(TextView) findViewById(R.id.sourcesText);
+		
+		String siteString="<u>http://pianoflow.tk/</u>";
+		siteText.setText(Html.fromHtml(siteString));
+		
+		String mailtoString="<u>jurkiw.misha@gmail.com</u>";
+		mailtoText.setText(Html.fromHtml(mailtoString));
+		
+		String sourcesString="<u>www.github.com/zloysalat</u>";
+		sourcesText.setText(Html.fromHtml(sourcesString));
 		
 		siteText.setOnClickListener(new View.OnClickListener() {			
 			@Override

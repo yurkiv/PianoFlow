@@ -1233,8 +1233,8 @@ containing a value of this type.
     }
     public static final class id {
         public static final int ImageView01=0x7f05003d;
-        public static final int TextView03=0x7f050044;
-        public static final int TextView04=0x7f050041;
+        public static final int TextView01=0x7f050041;
+        public static final int TextView03=0x7f050042;
         public static final int aboutButton=0x7f050047;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
@@ -1293,7 +1293,7 @@ containing a value of this type.
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
         public static final int siteText=0x7f050040;
-        public static final int sourcesText=0x7f050042;
+        public static final int sourcesText=0x7f050044;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f05003a;
         public static final int tabMode=0x7f050002;
@@ -1404,6 +1404,7 @@ containing a value of this type.
         public static final int app_name=0x7f0a000d;
         public static final int download_error=0x7f0a0010;
         public static final int loadingforecast=0x7f0a000f;
+        public static final int pianoflow_site=0x7f0a0013;
         public static final int please_wait=0x7f0a000e;
         public static final int slow_connection=0x7f0a0011;
         public static final int title_activity_about=0x7f0a0012;

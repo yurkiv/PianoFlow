@@ -389,8 +389,8 @@ int drawable ic_social_share 0x7f020059
 int drawable pause 0x7f02005a
 int drawable play 0x7f02005b
 int id ImageView01 0x7f05003d
-int id TextView03 0x7f050044
-int id TextView04 0x7f050041
+int id TextView01 0x7f050041
+int id TextView03 0x7f050042
 int id aboutButton 0x7f050047
 int id action_bar 0x7f05001c
 int id action_bar_activity_content 0x7f050015
@@ -449,7 +449,7 @@ int id showCustom 0x7f050007
 int id showHome 0x7f050004
 int id showTitle 0x7f050006
 int id siteText 0x7f050040
-int id sourcesText 0x7f050042
+int id sourcesText 0x7f050044
 int id split_action_bar 0x7f05001e
 int id submit_area 0x7f05003a
 int id tabMode 0x7f050002
@@ -505,6 +505,7 @@ int string abc_shareactionprovider_share_with_application 0x7f0a000b
 int string app_name 0x7f0a000d
 int string download_error 0x7f0a0010
 int string loadingforecast 0x7f0a000f
+int string pianoflow_site 0x7f0a0013
 int string please_wait 0x7f0a000e
 int string slow_connection 0x7f0a0011
 int string title_activity_about 0x7f0a0012
