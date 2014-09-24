@@ -38,7 +38,6 @@ import com.soundcloud.api.ApiWrapper;
 import com.soundcloud.api.Request;
 
 public class MainActivity extends Activity implements OnCompletionListener{
-
 	
 	private ImageButton playPauseButton;
 	private ImageButton shareButton;
@@ -128,12 +127,17 @@ public class MainActivity extends Activity implements OnCompletionListener{
 			}
 		});
 	}
-				
+		
+	public void playSong(int songIndex){		
+		Integer param =songIndex;
+		new PlaySoundFromUrl().execute(param);		
+	}
+	
 	/**
 	 * Function to play a song
 	 * @param songIndex - index of song
 	 * */
-	public void  playSong(int songIndex){
+	public void  playSongIntoAsyncTask(int songIndex){
 		// Play song
 		if(songsList.isEmpty()){
 			Toast.makeText(this, getResources().getString(R.string.download_error),Toast.LENGTH_LONG).show();
@@ -210,10 +214,17 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	 * */
 	@Override
 	public void onCompletion(MediaPlayer arg0) {
-		if(songsList.isEmpty()){
+		if(!songsList.isEmpty() && isNetworkConnected()){			
+			if(isGoodSpeed()){
+				
+			} else {
+				Toast.makeText(this, getResources().getString(R.string.slow_connection),Toast.LENGTH_LONG).show();
+				return;
+			}			
+		} else {
 			Toast.makeText(this, getResources().getString(R.string.download_error),Toast.LENGTH_LONG).show();
 			return;
-		}
+		}			
 		// check for repeat is ON or OFF
 		if(isRepeat){
 			// repeat is on play same song again
@@ -287,7 +298,7 @@ public class MainActivity extends Activity implements OnCompletionListener{
 		}		
 		Intent notificationIntent = new Intent(this, MainActivity.class);
 	    NotificationCompat.Builder nb = new NotificationCompat.Builder(this)	    
-	        .setSmallIcon(icon)
+	        .setSmallIcon(icon)	        
 	        .setContentText("Music to quiet your world")
 	        .setContentTitle("PianoFlow")
 	        .setContentIntent(PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT));
@@ -370,7 +381,7 @@ public class MainActivity extends Activity implements OnCompletionListener{
         protected void onPreExecute() {
             super.onPreExecute();
             this.progressDialog.setTitle(getResources().getString(R.string.please_wait));
-            this.progressDialog.setMessage(getResources().getString(R.string.loading_forecast));
+            this.progressDialog.setMessage(getResources().getString(R.string.loadingforecast));
             this.progressDialog.show();
         }					
 		@Override
@@ -399,4 +410,37 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	         }				 
 		}		
 	}
+	
+	public class PlaySoundFromUrl extends AsyncTask<Integer, Void, String>{
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            /**
+             * show dialog
+             */
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Integer... params) {
+            // TODO Auto-generated method stub
+            
+        	playSongIntoAsyncTask(params[0]);        	
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            /**
+             * update ui thread and remove dialog
+             */
+            super.onPostExecute(result);
+            if (result != null) {
+				//this.progressDialog.dismiss();
+				Log.d("DownloadManager", "Error: " + result);				
+            }
+        }
+    }
 }
