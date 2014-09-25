@@ -19,6 +19,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.ConnectivityManager;
@@ -26,6 +27,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -50,7 +52,8 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	private boolean isRepeat = false;
 	private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 	private NotificationManager manager;
-	
+	private AudioManager audioManager;
+	private AFListener afListenerMusic;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,12 +73,18 @@ public class MainActivity extends Activity implements OnCompletionListener{
 		mp.setOnCompletionListener(this); // Important
 		
 		manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
 		
 		// Getting all songs list
 		loadPlaylist();
+					
+		afListenerMusic = new AFListener(mp, "Music");
+	    int requestResult = audioManager.requestAudioFocus(afListenerMusic,
+	        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+	    Log.d("MainActivity", "Music request focus, result: " + requestResult);
 		
-		
-		// By default play first song
+	    // By default play first song
 		//playSong(0);
 				
 		/**
@@ -127,6 +136,8 @@ public class MainActivity extends Activity implements OnCompletionListener{
 			}
 		});
 	}
+	
+	
 		
 	public void playSong(int songIndex){		
 		Integer param =songIndex;
@@ -249,11 +260,17 @@ public class MainActivity extends Activity implements OnCompletionListener{
 	
 	@Override
 	 public void onDestroy(){
-	 super.onDestroy();
-	    mp.release();
-	    manager.cancel(1);
+		 super.onDestroy();
+		 if (mp != null){
+			 mp.release();
+			 manager.cancel(1);
+		 }
+		 if (afListenerMusic != null){
+		      audioManager.abandonAudioFocus(afListenerMusic);
+		 }
 	 }
 	
+
 	
 	private void shareApp(){
 		String text="http://pianoflow.tk - PianoFlow - Music to Quiet Your World. " +
@@ -443,4 +460,40 @@ public class MainActivity extends Activity implements OnCompletionListener{
             }
         }
     }
+	
+	public class AFListener implements OnAudioFocusChangeListener {
+		String label = "";
+		MediaPlayer mpl;
+		public AFListener(MediaPlayer mpl, String label) {
+			this.label = label;
+			this.mpl = mpl;
+		}
+
+		@Override
+		public void onAudioFocusChange(int focusChange) {
+			String event = "";
+			switch (focusChange) {
+			case AudioManager.AUDIOFOCUS_LOSS:
+				event = "AUDIOFOCUS_LOSS";
+				mpl.pause();
+				break;
+			case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+				event = "AUDIOFOCUS_LOSS_TRANSIENT";
+				mpl.pause();
+				break;
+			case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+				event = "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK";
+				mpl.setVolume(0.5f, 0.5f);
+				break;
+			case AudioManager.AUDIOFOCUS_GAIN:
+				event = "AUDIOFOCUS_GAIN";
+				if (!mpl.isPlaying())
+					mpl.start();
+				mpl.setVolume(1.0f, 1.0f);
+				break;
+			}
+			Log.d("AudioFocus", label + " onAudioFocusChange: " + event);
+		}
+	}
+	
 }
