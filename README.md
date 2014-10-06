@@ -1,7 +1,7 @@
 PianoFlow
 =========
 
-http://www.1mobile.com/pianoflow-2229800.html
+http://www.1mobile.com/pianoflow-2229800.html - PianoFlow Android Project
 
 Official client for the radio station http://pianoflow.tk
 This is online-radio with piano music 24/7 and with no ads. Relax and listen to the easy listening sounds of PianoFlow.
