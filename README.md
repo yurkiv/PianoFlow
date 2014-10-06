@@ -2,7 +2,6 @@ PianoFlow
 =========
 
 http://www.1mobile.com/pianoflow-2229800.html - PianoFlow Android Project
-=========
 The application represent online radio with some features:
 - Connect to Soundcloud and get playlist in JSON format.
 - Stream music from server.
