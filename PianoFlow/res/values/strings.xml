@@ -5,9 +5,9 @@
     <string name="please_wait" translatable="false">Please wait&#8230;</string>
     <string name="loadingforecast" translatable="false">Connect to server&#8230;</string>
     <string name="download_error" translatable="false">The connection to the server failed. Please check your internet connection or try again later.</string>
-    <string name="slow_connection" translatable="false">We think your internet connection is slow.</string>
+    <string name="slow_connection" translatable="false">We think your internet connection is slow. Please use 3G 4G or Wi-Fi connection.</string>
     <string name="title_activity_about" translatable="false">AboutActivity</string>
-    <string name="pianoflow_site" translatable="false">http://pianoflow.tk/</string>
+    <string name="pianoflow_site" translatable="false">pianoflow.tk</string>
     
 
 </resources>

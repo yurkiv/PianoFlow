@@ -54,7 +54,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Version 1.0.4"
+                    android:text="Version 1.0.5"
                     android:textColor="@color/AppColor" />
 
             </LinearLayout>
@@ -84,46 +84,29 @@
                 android:layout_marginTop="@dimen/dp16"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/TextView01"
+				
+                <Button
+                    android:id="@+id/feedbackButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:lines="1"
-                    android:text="Developer:"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:background="@color/trans20"
+                    android:paddingBottom="@dimen/piano"
+                    android:paddingLeft="@dimen/dp16"
+                    android:paddingRight="@dimen/dp16"
+                    android:paddingTop="@dimen/piano"
+                    android:text="Feedback"
                     android:textColor="@color/AppColor" />
 
-                <TextView
-                    android:id="@+id/TextView03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:lines="1"
-                    android:text="Mykhailo Yurkiv"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/White" />
-
-                <TextView
-                    android:id="@+id/mailtoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:lines="1"
-                    android:text="jurkiw.misha@gmail.com"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/White" />
-
-                <TextView
-                    android:id="@+id/sourcesText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/piano"
-                    android:text="www.github.com/zloysalat"
-                    android:textColor="@color/White" />
-
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp16"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
