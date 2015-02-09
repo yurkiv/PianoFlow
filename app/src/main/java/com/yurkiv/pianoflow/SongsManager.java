@@ -17,23 +17,25 @@ import com.soundcloud.api.ApiWrapper;
 import com.soundcloud.api.Request;
 
 import android.util.Log;
-import android.widget.Toast;
 
 
 public class SongsManager {
+
+    private static final String TAG="SongsManager";
+    private static final String CLIENT_ID="9c4981270863f59719aa8e62f7f4ccdd";
+    private static final String CLIENT_SECRET="354924134b97c9221a97cd249ffb7275";
+
 	/**
 	 * Function to read all mp3 files from soundcloud
 	 * and store the details in ArrayList
 	 * */
 	public static ArrayList<HashMap<String, String>> getPlayList(){
         ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-		String id = "e39f7d1a41a60e11c6772a54c834f5c5";
-		String secret = "8f1e702b3333f2ca4c8dde67164c14ed";		
 		String[] playlistArray={"/users/112076272/playlists/49640862",
 								"/users/112076272/playlists/56088270"};		
 		String playlistUrl=playlistArray[new Random().nextInt(playlistArray.length)];
 		
-		ApiWrapper wrapper = new ApiWrapper(id, secret, null, null);
+		ApiWrapper wrapper = new ApiWrapper(CLIENT_ID, CLIENT_SECRET, null, null);
 		try {
 			// Only needed for user-specific actions;
 			// wrapper.login("login", "pass");
@@ -54,18 +56,18 @@ public class SongsManager {
 					song.put("songTitle", trackTitle);
 					song.put("songPath", trackId);					
 					// Adding each song to SongList
-					songsList.add(song);					
+					songsList.add(song);
 					
 					//Log.d("SongsManager", trackId+" : "+trackTitle);
 				}	
 			}
-			Log.d("SongsManager", "Playlist downloaded!");
+			Log.d(TAG, "Playlist downloaded!");
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e(TAG, "IOException", e);
 		} catch (ParseException e) {
-			e.printStackTrace();
+            Log.e(TAG, "ParseException", e);
 		} catch (JSONException e) {
-			e.printStackTrace();
+            Log.e(TAG, "JSONException", e);
 		}			
 		// return songs list array
 		return songsList;
@@ -73,9 +75,7 @@ public class SongsManager {
 
     public static String getTrackStreamUrl(String trackId) throws IOException, JSONException {
         String streamurl = "";
-        String id = "e39f7d1a41a60e11c6772a54c834f5c5";
-        String secret = "8f1e702b3333f2ca4c8dde67164c14ed";
-        ApiWrapper wrapper = new ApiWrapper(id, secret, null, null);
+        ApiWrapper wrapper = new ApiWrapper(CLIENT_ID, CLIENT_SECRET, null, null);
         HttpResponse trackResp = wrapper.get(Request.to("/tracks/" + trackId));
         if (trackResp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             JSONObject trackJSON = new JSONObject(EntityUtils.toString(trackResp.getEntity()));

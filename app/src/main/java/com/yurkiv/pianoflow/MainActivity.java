@@ -6,19 +6,27 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.pnikosis.materialishprogress.ProgressWheel;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.yurkiv.pianoflow.util.Connectivity;
 
 import org.json.JSONException;
@@ -34,7 +42,6 @@ public class MainActivity extends ActionBarActivity implements MediaPlayer.OnCom
     private static final String TAG="MainActivity";
 
     private ImageButton btnPlayPause;
-
     private MediaPlayer mp;
 
     private int currentSongIndex = 0;
@@ -48,9 +55,17 @@ public class MainActivity extends ActionBarActivity implements MediaPlayer.OnCom
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        tintManager.setStatusBarTintEnabled(true);
+        tintManager.setNavigationBarTintEnabled(true);
+        //tintManager.setTintColor(Color.parseColor("#99000FF"));
+
         btnPlayPause = (ImageButton) findViewById(R.id.fab);
 
-        mp =new MediaPlayer();;
+        mp =new MediaPlayer();
 
         mp.setOnCompletionListener(this);
 
@@ -92,11 +107,7 @@ public class MainActivity extends ActionBarActivity implements MediaPlayer.OnCom
     private void loadPlaylist() {
         if(Connectivity.isConnected(getApplicationContext())){
             if(Connectivity.isConnectedFast(getApplicationContext())){
-                new LoadPlaylistAsync(getApplicationContext(), new Notifier() {
-                    @Override
-                    public void operationFinished(Context context, int city, String cityName) {
-                    }
-                }).execute();
+                new LoadPlaylistAsync(MainActivity.this).execute();
             } else {
                 Toast.makeText(this, getResources().getString(R.string.slow_connection),Toast.LENGTH_LONG).show();
             }
@@ -215,53 +226,30 @@ public class MainActivity extends ActionBarActivity implements MediaPlayer.OnCom
     }
 
     private class LoadPlaylistAsync extends AsyncTask<String, Void, Exception>{
-        private ProgressDialog progressDialog;
-        private Context context;
-        private Notifier notifier;
-        private Exception exception;
+        private MaterialDialog materialDialog;
 
-        public LoadPlaylistAsync(Context context, Notifier notifier) {
-            if (context == null) throw new IllegalArgumentException("parentActivity");
-            this.context = context;
-            this.notifier=notifier;
-            this.progressDialog = new ProgressDialog(this.context);
-            this.progressDialog.setIndeterminate(true);
-            this.progressDialog.setCancelable(false);
+        public LoadPlaylistAsync(MainActivity context){
+            MaterialDialog.Builder builder=new MaterialDialog.Builder(context);
+            builder.customView(R.layout.dialog_customview, false).cancelable(false);
+            materialDialog=builder.build();
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            this.progressDialog.setTitle(getResources().getString(R.string.please_wait));
-//            this.progressDialog.setMessage(getResources().getString(R.string.loadingforecast));
-//            this.progressDialog.show();
+            materialDialog.show();
         }
 
         @Override
         protected Exception doInBackground(String... params) {
-            try {
-                songsList = SongsManager.getPlayList();
-            } catch (Exception e) {
-                exception=e;
-            }
+            songsList = SongsManager.getPlayList();
             return null;
         }
 
         @Override
         protected void onPostExecute(Exception result) {
             super.onPostExecute(result);
-            if (result != null) {
-                //this.progressDialog.dismiss();
-                Log.d("LoadPlaylistAsync", "Error: " + result);
-                Toast.makeText(context, getResources().getString(R.string.connect_error),Toast.LENGTH_LONG).show();
-            } else {
-                if (this.progressDialog.isShowing()) {
-                    this.progressDialog.dismiss();
-                }
-                if (notifier != null) {
-                    notifier.operationFinished(context, 0, "");
-                }
-            }
+            materialDialog.dismiss();
         }
     }
 }
