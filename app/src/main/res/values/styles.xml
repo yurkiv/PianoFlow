@@ -2,16 +2,22 @@
 
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">#ffba7400</item>
         <item name="colorPrimaryDark">#ff875200</item>
         <item name="colorAccent">#ff0000</item>
+
+
+        <item name="windowActionBar">false</item>
+        <item name="windowActionBarOverlay">true</item>
+
     </style>
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#ffba7400</item>
-        <item name="colorPrimaryDark">#ff875200</item>
-        <item name="colorAccent">#ff0000</item>
+    <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
+
     </style>
+
 
 </resources>

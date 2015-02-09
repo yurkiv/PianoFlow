@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/green_circle"
-        android:src="@drawable/ic_pause"
+        android:src="@drawable/ic_play"
         android:id="@+id/fab"
         android:layout_above="@+id/title_container"
         android:layout_alignParentRight="true"
@@ -67,5 +67,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="42dp"
         android:layout_marginStart="42dp" />
+
+    <include layout="@layout/toolbar" />
+
 
 </RelativeLayout>

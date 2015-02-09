@@ -1,5 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
+    <item android:id="@+id/new_game"
+        android:icon="@drawable/ic_pause"
+        android:title="fdhfh"
+        app:showAsAction="always"/>
+    <item android:id="@+id/dsg"
+        android:icon="@drawable/ic_pause"
+        android:title="fdhfh"
+        app:showAsAction="never"/>
 </menu>
