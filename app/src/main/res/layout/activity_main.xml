@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:id="@+id/iv_background"
-        android:src="@drawable/bg" />
+        android:src="@drawable/bg2" />
 
     <RelativeLayout
         android:id="@+id/title_container"
@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_title"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:text="@string/mtqyw" />
     </RelativeLayout>
 
     <com.melnykov.fab.FloatingActionButton

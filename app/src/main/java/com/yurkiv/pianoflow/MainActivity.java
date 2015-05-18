@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,7 +27,6 @@ import com.yurkiv.pianoflow.model.Playlist;
 import com.yurkiv.pianoflow.model.Track;
 import com.yurkiv.pianoflow.util.AudioFocusListener;
 import com.yurkiv.pianoflow.util.Connectivity;
-import com.yurkiv.pianoflow.util.ImageUtil;
 import com.yurkiv.pianoflow.view.PlayPauseView;
 
 import java.io.IOException;
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     @InjectView(R.id.bt_next_track) protected FloatingActionButton btNextTrack;
     @InjectView(R.id.player_progress_bar) protected ProgressBar progressBar;
     @InjectView(R.id.tv_title) protected TextView trackTitle;
-    @InjectView(R.id.iv_background) protected ImageView ivBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         play_pause_view.setPlay(false);
-        ivBackground.setImageBitmap(ImageUtil.decodeSampledBitmapFromResource(MainActivity.this));
         progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         mp = new MediaPlayer();
