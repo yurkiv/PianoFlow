@@ -1,4 +1,4 @@
-package com.yurkiv.pianoflow.api;
+package com.yurkiv.pianoflow.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class Playlist {
     @SerializedName("title")
-    private String mTitle;
+    private String title;
 
     @SerializedName("tracks")
     private List<Track> tracks;
 
-    public String getmTitle() {
-        return mTitle;
+    public String getTitle() {
+        return title;
     }
 
     public List<Track> getTracks() {

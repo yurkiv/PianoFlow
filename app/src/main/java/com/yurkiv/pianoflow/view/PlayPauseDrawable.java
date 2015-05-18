@@ -18,6 +18,9 @@ import android.util.Property;
 
 import com.yurkiv.pianoflow.R;
 
+/**
+ * Created by yurkiv on 16.05.2015.
+ */
 public class PlayPauseDrawable extends Drawable {
 
     private static final Property<PlayPauseDrawable, Float> PROGRESS =

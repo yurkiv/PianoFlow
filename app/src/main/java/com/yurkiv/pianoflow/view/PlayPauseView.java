@@ -20,6 +20,9 @@ import android.widget.FrameLayout;
 
 import com.yurkiv.pianoflow.R;
 
+/**
+ * Created by yurkiv on 16.05.2015.
+ */
 public class PlayPauseView extends FrameLayout {
 
     private static final Property<PlayPauseView, Integer> COLOR =

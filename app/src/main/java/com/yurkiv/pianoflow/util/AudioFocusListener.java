@@ -1,4 +1,4 @@
-package com.yurkiv.pianoflow;
+package com.yurkiv.pianoflow.util;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -7,10 +7,10 @@ import android.util.Log;
 /**
  * Created by yurkiv on 07.02.2015.
  */
-public class AFListener implements AudioManager.OnAudioFocusChangeListener {
+public class AudioFocusListener implements AudioManager.OnAudioFocusChangeListener {
     String label = "";
     MediaPlayer mpl;
-    public AFListener(MediaPlayer mpl, String label) {
+    public AudioFocusListener(MediaPlayer mpl, String label) {
         this.label = label;
         this.mpl = mpl;
     }

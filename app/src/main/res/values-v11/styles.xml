@@ -3,8 +3,8 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light">
 
+        <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="windowActionBarOverlay">true</item>
 
     </style>
 

@@ -3,7 +3,7 @@ package com.yurkiv.pianoflow.api;
 import retrofit.RestAdapter;
 
 /**
- * Created by kevin on 2/22/15.
+ * Created by yurkiv on 16.05.2015.
  */
 public class SoundCloud {
     private static final String API_URL = "http://api.soundcloud.com";

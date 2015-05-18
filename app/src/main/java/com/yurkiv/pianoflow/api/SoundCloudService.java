@@ -1,5 +1,8 @@
 package com.yurkiv.pianoflow.api;
 
+import com.yurkiv.pianoflow.model.Playlist;
+import com.yurkiv.pianoflow.model.Track;
+
 import java.util.List;
 
 import retrofit.Callback;
@@ -8,11 +11,11 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
- * Created by kevin on 2/22/15.
+ * Created by yurkiv on 16.05.2015.
  */
 public interface SoundCloudService {
 
-    static final String CLIENT_ID = "954240dcf4b7c0a46e59369a69db7215";
+    static final String CLIENT_ID = "9c4981270863f59719aa8e62f7f4ccdd";
 
     @GET("/tracks?client_id=" + CLIENT_ID)
     public void searchSongs(@Query("q") String query, Callback<List<Track>> cb);
