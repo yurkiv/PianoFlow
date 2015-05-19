@@ -164,19 +164,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     @Override
-    public void onBackPressed() {
-        if (mp != null){
-            if (mp.isPlaying()){
-                moveTaskToBack(true);
-            } else {
-                super.onBackPressed();
-            }
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -202,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         checkConnection();
         Random rand = new Random();
         int currentSongIndex = rand.nextInt((tracks.size() - 1) - 0 + 1) + 0;
-        Log.d(TAG, String.valueOf(currentSongIndex));
         Track selectedTrack = tracks.get(currentSongIndex);
         trackTitle.setText(selectedTrack.getTitle());
 
