@@ -1,6 +1,5 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="margin_16_dp">16dp</dimen>
     <dimen name="vertical_small_margin">16dp</dimen>
     <dimen name="vertical_large_margin">72dp</dimen>
     <dimen name="vertical_inner_margin">56dp</dimen>

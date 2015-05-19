@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     @InjectView(R.id.bt_next_track) protected FloatingActionButton btNextTrack;
     @InjectView(R.id.player_progress_bar) protected ProgressBar progressBar;
     @InjectView(R.id.tv_title) protected TextView trackTitle;
+    @InjectView(R.id.main_toolbar) protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         ButterKnife.inject(this);
         play_pause_view.setPlay(false);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
         mp = new MediaPlayer();
         mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         });
 
         tracks = new ArrayList<>();
-        int[] playlistIdArray={49640862, 56088270};
+        int[] playlistIdArray={49640862, 56088270, 59062894};
         final int playlistId=playlistIdArray[new Random().nextInt(playlistIdArray.length)];
         if (checkConnection()){
             SoundCloudService service = SoundCloud.getService();
@@ -157,6 +164,19 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     }
 
     @Override
+    public void onBackPressed() {
+        if (mp != null){
+            if (mp.isPlaying()){
+                moveTaskToBack(true);
+            } else {
+                super.onBackPressed();
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -165,7 +185,9 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.search_view) {
+        if (id == R.id.about) {
+            Intent i = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
