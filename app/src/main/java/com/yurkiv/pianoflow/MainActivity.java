@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         play_pause_view.setPlay(false);
-//        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        play_pause_view.setEnabled(false);
+
 
         if (toolbar!=null){
             setSupportActionBar(toolbar);
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
                 public void success(Playlist playlist, Response response) {
                     updateTracks(playlist.getTracks());
                     Log.d(TAG, "loaded playlist id="+playlistId+" title: "+playlist.getTitle());
+                    play_pause_view.setEnabled(true);
                     playRandomSong();
                 }
 
