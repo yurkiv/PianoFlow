@@ -41,7 +41,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="-20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/ic_skip_next"
         app:fab_type="mini"
         app:fab_colorNormal="@color/primary_color" />
@@ -54,7 +54,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="-40dp"
-        android:layout_marginRight="50dp">
+        android:layout_marginRight="60dp">
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            android:id="@+id/player_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true"
+            app:cpv_color="@android:color/white"
+            app:cpv_thickness="8dp"/>
 
         <com.yurkiv.pianoflow.view.PlayPauseView
             android:id="@+id/play_pause_view"
@@ -64,15 +73,8 @@
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
             android:stateListAnimator="@anim/button_elevation"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             />
-
-        <ProgressBar
-            android:id="@+id/player_progress_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:layout_alignParentTop="false" />
 
     </RelativeLayout>
 

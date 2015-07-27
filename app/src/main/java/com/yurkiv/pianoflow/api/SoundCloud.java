@@ -6,6 +6,7 @@ import retrofit.RestAdapter;
  * Created by yurkiv on 16.05.2015.
  */
 public class SoundCloud {
+
     private static final String API_URL = "http://api.soundcloud.com";
     private static final RestAdapter REST_ADAPTER = new RestAdapter.Builder()
             .setEndpoint(API_URL)

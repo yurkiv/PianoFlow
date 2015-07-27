@@ -2,7 +2,7 @@ package com.yurkiv.pianoflow.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by yurkiv on 16.05.2015.
@@ -12,13 +12,13 @@ public class Playlist {
     private String title;
 
     @SerializedName("tracks")
-    private List<Track> tracks;
+    private ArrayList<Track> tracks;
 
     public String getTitle() {
         return title;
     }
 
-    public List<Track> getTracks() {
+    public ArrayList<Track> getTracks() {
         return tracks;
     }
 }

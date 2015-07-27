@@ -5,8 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,10 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.melnykov.fab.FloatingActionButton;
 import com.yurkiv.pianoflow.api.SoundCloud;
 import com.yurkiv.pianoflow.api.SoundCloudService;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
     @InjectView(R.id.play_pause_view) protected PlayPauseView play_pause_view;
     @InjectView(R.id.bt_next_track) protected FloatingActionButton btNextTrack;
-    @InjectView(R.id.player_progress_bar) protected ProgressBar progressBar;
+    @InjectView(R.id.player_progress_bar) protected CircularProgressView progressBar;
     @InjectView(R.id.tv_title) protected TextView trackTitle;
     @InjectView(R.id.main_toolbar) protected Toolbar toolbar;
 
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         play_pause_view.setPlay(false);
-        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+//        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         if (toolbar!=null){
             setSupportActionBar(toolbar);
@@ -72,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayer.OnCom
 
         mp = new MediaPlayer();
         mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mp.setOnCompletionListener(this);
         mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
